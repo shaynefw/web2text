@@ -1,0 +1,10 @@
+/* container-overflow class overflow */
+.container-overflow {
+    overflow: hidden;
+    height: 500px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    /* scroll */
+    overflow-y: scroll;
+}
