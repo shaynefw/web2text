@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Convert Website to Text</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <h1>Convert Website to Text</h1>
+    <input type="text" id="url" placeholder="Enter website URL..." />
+    <button onclick="convert()">Convert</button>
+    <div id="output"></div>
+    <!-- create button link to /assets/pages/temp.html -->
+    <a href="temp.html">Click here to view the converted text</a>
+    <script>
+      async function convert() {
+        // Get user input
+        const url = document.getElementById('url').value
+
+        // Validate URL format
+        const regex = /^(http|https):\/\/[^ "]+$/
+        if (!regex.test(url)) {
+          document.getElementById('output').innerHTML = 'Invalid URL format'
+          return
+        }
+
+        try {
+          // Fetch HTML content of the entered URL
+          const response = await fetch(url)
+          const html = await response.text()
+
+          // Parse HTML content and remove all tags and non-text elements
+          const parser = new DOMParser()
+          const doc = parser.parseFromString(html, 'text/html')
+          const text = doc.body.textContent.replace(/\s+/g, ' ').trim()
+
+          // Output plain text content in a readable format
+          document.getElementById('output').innerHTML = '<p>' + text + '</p>'
+        } catch (error) {
+          // Handle errors
+          document.getElementById('output').innerHTML =
+            'Error: ' + error.message
+        }
+      }
+    </script>
+  </body>
+</html>
