@@ -1,10 +1,11 @@
 /* container-overflow class overflow */
 .container-overflow {
-    overflow: hidden;
-    height: 500px;
-    width: 100%;
+    width: 80%;
     margin: 0 auto;
     position: relative;
-    /* scroll */
-    overflow-y: scroll;
+}
+/* dark theme for webpage*/
+html {
+    background-color: #4b4b4b;
+    color: #fff;
 }
